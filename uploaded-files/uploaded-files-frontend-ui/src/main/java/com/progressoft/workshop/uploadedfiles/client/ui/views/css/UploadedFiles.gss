@@ -1,0 +1,79 @@
+.uploadedFiles{
+    background-color: blue;
+}
+
+.entry:HOVER{
+    cursor:pointer;
+    background-color: #f5f5f5;
+}
+
+.collectionFileName{
+    font-size: 1.3em !important;
+    font-weight: 500;
+}
+
+.collectionFileDate{
+    color: #6f6f6f;
+}
+
+.progress{
+    height:20px !important;
+    border-radius:3px !important;
+    margin-bottom: 15px !important;
+}
+.progress div{
+    border-radius:0px !important;
+}
+
+.progressGreen div{
+    background:repeating-linear-gradient( 45deg, #66bc60, #60bc6a 10px, #469849 10px, #46984c 20px ) !important;
+}
+
+.progressRed div{
+    background:repeating-linear-gradient( 45deg, #bc6060, #bc6060 10px, #984646 10px, #984646 20px ) !important;
+}
+
+
+
+.progressSmall{
+    height:10px !important;
+    border-radius:3px !important;
+    margin-bottom: 15px !important;
+}
+.progressSmall div{
+    border-radius:0px !important;
+}
+
+.progressSmallGreen div{
+    background:#46984c !important;
+}
+
+.progressSmallRed div{
+    background: #984646 !important;
+}
+
+
+
+
+
+.progressLabel{
+    font-size: 1.8em;
+    padding: 5px;
+    font-weight: 300;
+}
+
+.creditLabel{
+    color: #46984b !important;
+}
+
+.debitLabel{
+    color: #984646 !important;
+}
+
+.left{
+}
+
+.right{
+    background-color: #fefefe;
+    border-left:1px solid #d8d6d6;
+}

@@ -1,0 +1,73 @@
+body{
+    background-color: #f5f5f5 !important;
+}
+
+.upload {
+    top: 0px !important;
+    height: 200px !important;
+    background-color: #f5f5f5 !important;
+}
+
+.uploader{
+    top : 35% !important;
+}
+
+.card{
+    border : 1px solid #cfcfcf;
+}
+
+.cardContent{
+    padding:5px !important;
+}
+
+.percentageContent{
+    margin-bottom: 25px !important;
+}
+
+.cardAction{
+    padding: 10px !important;
+    padding-top: 15px !important;
+}
+
+.cardActionContent{
+    margin-bottom: 0px;
+}
+
+.cardActionLabel{
+    padding-bottom: 0px;
+    line-height: 13px;
+    font-size: 13px;
+}
+
+.cardTotalLabel{
+    font-size: 15px !important;
+}
+
+.statsContentTitle h4{
+    margin-top: 0px !important;
+    text-indent: 10px;
+    color: #716f6f;
+    font-size: 1.5rem !important;
+}
+
+.statsBody{
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.uploaderContainer{
+    margin-bottom: 0px !important;
+}
+
+.statsContainer{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.progress{
+    height:10px !important;
+    border-radius:0px !important;
+}
+.progress div{
+    border-radius:0px !important;
+}

@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DefaultUploadPresenter</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.progressoft.workshop.upload.client.presenters</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DefaultUploadPresenter (com.progressoft.workshop.upload.client.presenters)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DefaultUploadPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (8/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    58.5%
+  </span>
+  <span class="absValue">
+    (24/ 41)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DefaultUploadPresenter$BulkInValidTransactionsMapper</td>
+  </tr>
+  <tr>
+    <td class="name">DefaultUploadPresenter$BulkInValidTransactionsMapper$$EnhancerByMockitoWithCGLIB$$60bdba95</td>
+  </tr>
+  <tr>
+    <td class="name">DefaultUploadPresenter$BulkValidTransactionsMapper</td>
+  </tr>
+  <tr>
+    <td class="name">DefaultUploadPresenter$BulkValidTransactionsMapper$$EnhancerByMockitoWithCGLIB$$37589f12</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (8/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    58.5%
+  </span>
+  <span class="absValue">
+    (24/ 41)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.progressoft.workshop.upload.client.presenters;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.github.nmorel.gwtjackson.client.ObjectMapper;
+<i>4</i>&nbsp;import com.google.gwt.core.client.GWT;
+<i>5</i>&nbsp;import com.progressoft.brix.domino.api.client.annotations.Presenter;
+<i>6</i>&nbsp;import com.progressoft.brix.domino.api.client.mvp.presenter.BaseClientPresenter;
+<i>7</i>&nbsp;import com.progressoft.brix.domino.api.shared.extension.MainContext;
+<i>8</i>&nbsp;import com.progressoft.brix.domino.api.shared.history.TokenFilter;
+<i>9</i>&nbsp;import com.progressoft.brix.domino.vertxbus.shared.extension.VertxBusContext;
+<i>10</i>&nbsp;import com.progressoft.workshop.fileparser.shared.InvalidTransaction;
+<i>11</i>&nbsp;import com.progressoft.workshop.fileparser.shared.Transaction;
+<i>12</i>&nbsp;import com.progressoft.workshop.layout.shared.extension.LayoutContext;
+<i>13</i>&nbsp;import com.progressoft.workshop.upload.client.views.UploadView;
+<i>14</i>&nbsp;import com.progressoft.workshop.upload.shared.BulkInValidTransactions;
+<i>15</i>&nbsp;import com.progressoft.workshop.upload.shared.BulkValidTransactions;
+<i>16</i>&nbsp;import org.slf4j.Logger;
+<i>17</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import java.util.LinkedList;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;@Presenter
+<b class="fc"><i>22</i>&nbsp;public class DefaultUploadPresenter extends BaseClientPresenter&lt;UploadView&gt; implements UploadPresenter {</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUploadPresenter.class);</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    interface BulkValidTransactionsMapper extends ObjectMapper&lt;BulkValidTransactions&gt; {
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    interface BulkInValidTransactionsMapper extends ObjectMapper&lt;BulkInValidTransactions&gt; {
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;
+<b class="fc"><i>32</i>&nbsp;    private LinkedList&lt;Transaction&gt; validTransactions = new LinkedList&lt;&gt;();</b>
+<b class="fc"><i>33</i>&nbsp;    private LinkedList&lt;InvalidTransaction&gt; inValidTransactions = new LinkedList&lt;&gt;();</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    private MainContext main;
+<b class="fc"><i>37</i>&nbsp;    private BulkValidTransactionsMapper validTransactionsMapper = GWT.create(BulkValidTransactionsMapper.class);</b>
+<b class="fc"><i>38</i>&nbsp;    private BulkInValidTransactionsMapper inValidTransactionsMapper = GWT.create(BulkInValidTransactionsMapper.class);</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    @Override
+<i>41</i>&nbsp;    public void contributeToMainModule(MainContext context) {
+<b class="fc"><i>42</i>&nbsp;        LOGGER.info(&quot;Main main received at presenter &quot; + DefaultUploadPresenter.class.getSimpleName());</b>
+<b class="fc"><i>43</i>&nbsp;        this.main = context;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @Override
+<i>47</i>&nbsp;    public void contributeToLayoutModule(LayoutContext layoutContext) {
+<b class="fc"><i>48</i>&nbsp;        layoutContext.addMenuItem(view.menuItem());</b>
+<b class="fc"><i>49</i>&nbsp;        initMenuSelectionHandler(layoutContext);</b>
+<b class="fc"><i>50</i>&nbsp;        listenForUrlHistory();</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    private void listenForUrlHistory() {
+<b class="fc"><i>54</i>&nbsp;        main.history()</b>
+<b class="fc"><i>55</i>&nbsp;                .listen(TokenFilter.startsWith(&quot;upload&quot;), state -&gt; selectUpload())</b>
+<b class="fc"><i>56</i>&nbsp;                .onDirectUrl(state -&gt; selectUpload());</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    private void selectUpload() {
+<b class="fc"><i>60</i>&nbsp;        view.menuItem().select();</b>
+<b class="fc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    private void initMenuSelectionHandler(LayoutContext layoutContext) {
+<b class="fc"><i>64</i>&nbsp;        view.menuItem().selectionHandler(() -&gt; {</b>
+<b class="fc"><i>65</i>&nbsp;            layoutContext.setContent(view.content());</b>
+<b class="fc"><i>66</i>&nbsp;            main.history().pushState(&quot;upload&quot;, &quot;Workshop - upload&quot;, &quot;&quot;);</b>
+<b class="fc"><i>67</i>&nbsp;        });</b>
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    public void contributeToEventBusModule(VertxBusContext context) {
+<b class="nc"><i>72</i>&nbsp;        context.registerMessageHandler(&quot;valid-transactions-ui&quot;, message -&gt; {</b>
+<i>73</i>&nbsp;
+<b class="nc"><i>74</i>&nbsp;            BulkValidTransactions bulkValidTransactions = validTransactionsMapper.read(message.toString());</b>
+<b class="nc"><i>75</i>&nbsp;            validTransactions.addAll(bulkValidTransactions.getTransactions());</b>
+<b class="nc"><i>76</i>&nbsp;            if (validTransactions.size() == 1000) {</b>
+<b class="nc"><i>77</i>&nbsp;                LinkedList&lt;Transaction&gt; forRendering = new LinkedList&lt;&gt;(validTransactions);</b>
+<b class="nc"><i>78</i>&nbsp;                validTransactions.clear();</b>
+<b class="nc"><i>79</i>&nbsp;                runAsync(() -&gt; forRendering.forEach(t -&gt; view.content().update(t)));</b>
+<i>80</i>&nbsp;            }
+<i>81</i>&nbsp;
+<b class="nc"><i>82</i>&nbsp;        });</b>
+<b class="nc"><i>83</i>&nbsp;        context.registerMessageHandler(&quot;invalid-transactions-ui&quot;, message -&gt; {</b>
+<b class="nc"><i>84</i>&nbsp;            BulkInValidTransactions bulkInValidTransactions = inValidTransactionsMapper.read(message.toString());</b>
+<i>85</i>&nbsp;
+<b class="nc"><i>86</i>&nbsp;            inValidTransactions.addAll(bulkInValidTransactions.getTransactions());</b>
+<b class="nc"><i>87</i>&nbsp;            if (inValidTransactions.size() == 1000) {</b>
+<b class="nc"><i>88</i>&nbsp;                LinkedList&lt;InvalidTransaction&gt; forRendering = new LinkedList&lt;&gt;(inValidTransactions);</b>
+<b class="nc"><i>89</i>&nbsp;                inValidTransactions.clear();</b>
+<b class="nc"><i>90</i>&nbsp;                runAsync(() -&gt; forRendering.forEach(t -&gt; view.content().update(t)));</b>
+<i>91</i>&nbsp;            }
+<b class="nc"><i>92</i>&nbsp;        });</b>
+<b class="nc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-19 11:23</div>
+</div>
+</body>
+</html>

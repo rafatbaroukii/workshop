@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.user.theme.clean.Clean"/>
+    <inherits name="ru.finam.slf4jgwt.logging.gwt.Logging"/>
+
+    <source path=""/>
+
+    <entry-point class="com.progressoft.workshop.AppClientModule"/>
+
+    <set-property name="user.agent" value="ie10,gecko1_8,safari"/>
+</module>

@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DefaultUploadContent</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.progressoft.workshop.upload.client.ui.views</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DefaultUploadContent (com.progressoft.workshop.upload.client.ui.views)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DefaultUploadContent</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.progressoft.workshop.upload.client.ui.views;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gwt.core.client.GWT;
+<i>4</i>&nbsp;import com.google.gwt.i18n.client.NumberFormat;
+<i>5</i>&nbsp;import com.google.gwt.uibinder.client.UiBinder;
+<i>6</i>&nbsp;import com.google.gwt.uibinder.client.UiField;
+<i>7</i>&nbsp;import com.google.gwt.user.client.ui.Composite;
+<i>8</i>&nbsp;import com.google.gwt.user.client.ui.IsWidget;
+<i>9</i>&nbsp;import com.progressoft.workshop.fileparser.shared.InvalidTransaction;
+<i>10</i>&nbsp;import com.progressoft.workshop.fileparser.shared.Transaction;
+<i>11</i>&nbsp;import com.progressoft.workshop.upload.client.views.UploadView;
+<i>12</i>&nbsp;import gwt.material.design.addins.client.fileuploader.MaterialFileUploader;
+<i>13</i>&nbsp;import gwt.material.design.addins.client.fileuploader.MaterialUploadLabel;
+<i>14</i>&nbsp;import gwt.material.design.client.constants.Color;
+<i>15</i>&nbsp;import gwt.material.design.client.ui.MaterialColumn;
+<i>16</i>&nbsp;import gwt.material.design.client.ui.MaterialPanel;
+<i>17</i>&nbsp;import org.slf4j.Logger;
+<i>18</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import java.text.DecimalFormat;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;public class DefaultUploadContent extends Composite implements UploadView.UploadContent {
+<i>23</i>&nbsp;
+<b class="nc"><i>24</i>&nbsp;    private static final Logger logger = LoggerFactory.getLogger(DefaultUploadContent.class);</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    interface DefaultUploadContentUiBinder extends UiBinder&lt;MaterialPanel, DefaultUploadContent&gt; {
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<b class="nc"><i>29</i>&nbsp;    private static DefaultUploadContentUiBinder ourUiBinder = GWT.create(DefaultUploadContentUiBinder.class);</b>
+<i>30</i>&nbsp;
+<b class="nc"><i>31</i>&nbsp;    private boolean statisticsVisible = false;</b>
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;    private final NumberFormat doubleFormat = NumberFormat.getFormat(&quot;#.00&quot;);</b>
+<b class="nc"><i>34</i>&nbsp;    private RecordStatistics.ValueFormatter moneyFormatter= value -&gt; doubleFormat.format(value)+&quot; $&quot;;</b>
+<b class="nc"><i>35</i>&nbsp;    private RecordStatistics.ValueFormatter sameValueFormatter= value -&gt; value+&quot;&quot;;</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    @UiField
+<i>39</i>&nbsp;    MaterialUploadLabel uploaderLabel;
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    @UiField
+<i>42</i>&nbsp;    MaterialFileUploader uploader;
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    @UiField
+<i>45</i>&nbsp;    MaterialColumn totalRecords;
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @UiField
+<i>48</i>&nbsp;    MaterialColumn totalAmount;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @UiField
+<i>51</i>&nbsp;    MaterialColumn totalTransactions;
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    private RecordStatistics totalRecordsStats;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    private RecordStatistics totalAmountsStats;
+<i>56</i>&nbsp;    private RecordStatistics totalTransactionsStats;
+<i>57</i>&nbsp;
+<b class="nc"><i>58</i>&nbsp;    public DefaultUploadContent() {</b>
+<b class="nc"><i>59</i>&nbsp;        initWidget(ourUiBinder.createAndBindUi(this));</b>
+<b class="nc"><i>60</i>&nbsp;        this.uploaderLabel.getIcon().setIconColor(Color.GREEN);</b>
+<i>61</i>&nbsp;
+<b class="nc"><i>62</i>&nbsp;        uploader.addSendingHandler(event -&gt; {</b>
+<b class="nc"><i>63</i>&nbsp;            if (!isStatisticsVisible())</b>
+<b class="nc"><i>64</i>&nbsp;                showStatistics();</b>
+<i>65</i>&nbsp;        });
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    private boolean isStatisticsVisible() {
+<b class="nc"><i>69</i>&nbsp;        return statisticsVisible;</b>
+<i>70</i>&nbsp;    }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    private void showStatistics() {
+<b class="nc"><i>73</i>&nbsp;        statisticsVisible = true;</b>
+<b class="nc"><i>74</i>&nbsp;        this.totalRecordsStats = new RecordStatistics(&quot;TOTAL RECORDS&quot;, &quot;VALID&quot;, &quot;INVALID&quot;, sameValueFormatter);</b>
+<b class="nc"><i>75</i>&nbsp;        this.totalAmountsStats = new RecordStatistics(&quot;TOTAL AMOUNTS&quot;, &quot;CREDIT&quot;, &quot;DEBIT&quot;, moneyFormatter);</b>
+<b class="nc"><i>76</i>&nbsp;        this.totalTransactionsStats = new RecordStatistics(&quot;TOTAL TRANSACTIONS&quot;, &quot;CREDIT&quot;, &quot;DEBIT&quot;, sameValueFormatter);</b>
+<i>77</i>&nbsp;
+<b class="nc"><i>78</i>&nbsp;        this.totalRecords.add(totalRecordsStats);</b>
+<b class="nc"><i>79</i>&nbsp;        this.totalAmount.add(totalAmountsStats);</b>
+<b class="nc"><i>80</i>&nbsp;        this.totalTransactions.add(totalTransactionsStats);</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    @Override
+<i>84</i>&nbsp;    public IsWidget get() {
+<b class="nc"><i>85</i>&nbsp;        return this;</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    @Override
+<i>89</i>&nbsp;    public void update(Transaction transaction) {
+<b class="nc"><i>90</i>&nbsp;        totalRecordsStats.updateFirst(1);</b>
+<b class="nc"><i>91</i>&nbsp;        totalAmountsStats.updateFirst(transaction.getAmount());</b>
+<b class="nc"><i>92</i>&nbsp;        if(&quot;C&quot;.equals(transaction.getOperation()))</b>
+<b class="nc"><i>93</i>&nbsp;            totalTransactionsStats.updateFirst(1);</b>
+<i>94</i>&nbsp;        else
+<b class="nc"><i>95</i>&nbsp;            totalTransactionsStats.updateSecond(1);</b>
+<i>96</i>&nbsp;    }
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;    @Override
+<i>99</i>&nbsp;    public void update(InvalidTransaction invalidTransaction) {
+<b class="nc"><i>100</i>&nbsp;        totalRecordsStats.updateSecond(1);</b>
+<i>101</i>&nbsp;
+<b class="nc"><i>102</i>&nbsp;        String record = invalidTransaction.getRecord();</b>
+<b class="nc"><i>103</i>&nbsp;        String[] splitedRecord = record.split(&quot;,&quot;);</b>
+<b class="nc"><i>104</i>&nbsp;        if(splitedRecord.length==3) {</b>
+<b class="nc"><i>105</i>&nbsp;            double amount = Double.parseDouble(splitedRecord[2]);</b>
+<b class="nc"><i>106</i>&nbsp;            totalAmountsStats.updateSecond(amount);</b>
+<i>107</i>&nbsp;        }
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-19 11:23</div>
+</div>
+</body>
+</html>

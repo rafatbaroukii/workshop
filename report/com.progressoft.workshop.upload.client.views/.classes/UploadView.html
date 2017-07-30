@@ -1,0 +1,87 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UploadView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.progressoft.workshop.upload.client.views</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UploadView (com.progressoft.workshop.upload.client.views)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">UploadView$MenuSelectionHandler</td>
+  </tr>
+  <tr>
+    <td class="name">UploadView$UploadContent</td>
+  </tr>
+  <tr>
+    <td class="name">UploadView$UploadMenuItem</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.progressoft.workshop.upload.client.views;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gwt.user.client.ui.IsWidget;
+<i>4</i>&nbsp;import com.progressoft.brix.domino.api.client.mvp.view.View;
+<i>5</i>&nbsp;import com.progressoft.workshop.fileparser.shared.InvalidTransaction;
+<i>6</i>&nbsp;import com.progressoft.workshop.fileparser.shared.Transaction;
+<i>7</i>&nbsp;import com.progressoft.workshop.layout.shared.extension.LayoutContext;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface UploadView extends View&lt;IsWidget&gt; {
+<i>10</i>&nbsp;    UploadMenuItem menuItem();
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    UploadContent content();
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @FunctionalInterface
+<i>16</i>&nbsp;    interface MenuSelectionHandler {
+<i>17</i>&nbsp;        void onSelected();
+<i>18</i>&nbsp;    }
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    interface UploadMenuItem extends LayoutContext.MenuItem {
+<i>21</i>&nbsp;        void selectionHandler(MenuSelectionHandler handler);
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;        void select();
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    interface UploadContent extends LayoutContext.Content {
+<i>27</i>&nbsp;        void update(Transaction transaction);
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;        void update(InvalidTransaction invalidTransaction);
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-19 11:23</div>
+</div>
+</body>
+</html>

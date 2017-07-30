@@ -1,0 +1,111 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DefaultUploadView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.progressoft.workshop.upload.client.ui.views</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DefaultUploadView (com.progressoft.workshop.upload.client.ui.views)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DefaultUploadView</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.progressoft.workshop.upload.client.ui.views;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gwt.user.client.ui.IsWidget;
+<i>4</i>&nbsp;import com.progressoft.brix.domino.api.client.annotations.UiView;
+<i>5</i>&nbsp;import com.progressoft.workshop.upload.client.presenters.UploadPresenter;
+<i>6</i>&nbsp;import com.progressoft.workshop.upload.client.views.UploadView;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;@UiView(presentable = UploadPresenter.class)
+<b class="nc"><i>9</i>&nbsp;public class DefaultUploadView implements UploadView {</b>
+<i>10</i>&nbsp;
+<b class="nc"><i>11</i>&nbsp;    private UploadMenuItem menuItem = new DefaultUploadMenuItem();</b>
+<b class="nc"><i>12</i>&nbsp;    private UploadContent content = new DefaultUploadContent();</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    @Override
+<i>15</i>&nbsp;    public UploadMenuItem menuItem() {
+<b class="nc"><i>16</i>&nbsp;        return menuItem;</b>
+<i>17</i>&nbsp;    }
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Override
+<i>20</i>&nbsp;    public UploadContent content() {
+<b class="nc"><i>21</i>&nbsp;        return content;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Override
+<i>25</i>&nbsp;    public IsWidget get() {
+<b class="nc"><i>26</i>&nbsp;        return content.get();</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-19 11:23</div>
+</div>
+</body>
+</html>

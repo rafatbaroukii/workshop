@@ -1,0 +1,42 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:m='urn:import:gwt.material.design.client.ui'
+             xmlns:ma='urn:import:gwt.material.design.addins.client'
+>
+
+    <ui:with field="bundle" type="com.progressoft.workshop.layout.client.ui.views.LayoutBundle"/>
+    <ui:style>
+        .logo{
+            margin-bottom: 16px;
+            border-radius: 0px !important;
+            border-top-right-radius: 5px !important;
+            border-bottom-right-radius: 5px !important;
+            width:auto !important;
+        }
+
+        .profile{
+            padding-left:0px !important;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <m:MaterialHeader top="0">
+            <!-- NavBar -->
+            <m:MaterialNavBar activates="sideNav" ui:field="navBar" shadow="1" paddingLeft="20" backgroundColor="LIGHT_BLUE_DARKEN_4">
+                <m:MaterialNavBrand ui:field="navBrand" text="Workshop"/>
+            </m:MaterialNavBar>
+
+        </m:MaterialHeader>
+
+        <m:MaterialSideNavPush ui:field="menuPanel" shadow="1" m:id="sideNav" withHeader="false">
+            <ma:sideprofile.MaterialSideProfile resource="{bundle.background}" addStyleNames="{style.profile}">
+                <m:MaterialImage addStyleNames="{style.logo}" shadow="3"/>
+                <m:MaterialLabel textColor="WHITE"/>
+                <m:MaterialLink textColor="WHITE"/>
+            </ma:sideprofile.MaterialSideProfile>
+        </m:MaterialSideNavPush>
+
+        <m:MaterialContainer ui:field="contentPanel" fontSize="0.8em" paddingTop="65">
+        </m:MaterialContainer>
+    </g:HTMLPanel>
+</ui:UiBinder>

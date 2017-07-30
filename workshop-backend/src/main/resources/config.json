@@ -1,0 +1,32 @@
+{
+  "http.port": 8080,
+  "body.limit": 100,
+  "db.port": 27017,
+  "sockjs.configurator": "com.progressoft.brix.domino.vertxbus.server.entrypoint.VertxConfigSockJsConfigurator",
+  "domino.eventbus.sockjs": {
+    "addresses": {
+      "inbound": [
+        {
+          "address": "invalid-transactions-ui"
+        },
+        {
+          "address": "valid-transactions-ui"
+        },
+        {
+          "address": "file-stats"
+        }
+      ],
+      "outbound": [
+        {
+          "address": "invalid-transactions-ui"
+        },
+        {
+          "address": "valid-transactions-ui"
+        },
+        {
+          "address": "file-stats"
+        }
+      ]
+    }
+  }
+}

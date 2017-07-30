@@ -1,0 +1,69 @@
+/** Add css rules here for your application. */
+@font-face {
+    font-family: exo-light;
+    src: url(fonts/exo/Exo-Light.otf);
+}
+
+@font-face {
+    font-family: exo-extra-light;
+    src: url(fonts/exo/Exo-ExtraLight.otf);
+}
+
+@font-face {
+    font-family: ptc55f;
+    src: url(fonts/pt-sans/PTC55F.ttf);
+}
+
+@font-face {
+    font-family: domino-open-sans;
+    src: url(fonts/open-sans/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: domino-open-sans-regular;
+    src: url(fonts/open-sans/OpenSans-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v14/DXI1ORHCpsQm3Vp6mXoaTa-j2U0lmluP9RWlSytm3ho.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
+body{
+    font-family: 'Open Sans',sans-serif !important;
+}
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}

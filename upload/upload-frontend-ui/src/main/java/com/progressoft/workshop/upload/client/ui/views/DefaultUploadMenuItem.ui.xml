@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:m='urn:import:gwt.material.design.client.ui'
+>
+
+    <ui:with field="bundle" type="com.progressoft.workshop.upload.client.ui.views.UploadBundle"/>
+    <ui:style gss="true">
+    </ui:style>
+
+    <m:MaterialLink ui:field="uploadLink" iconType="FILE_UPLOAD" text="Upload"/>
+</ui:UiBinder>

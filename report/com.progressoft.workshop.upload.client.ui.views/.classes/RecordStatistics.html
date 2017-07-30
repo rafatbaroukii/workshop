@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RecordStatistics</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.progressoft.workshop.upload.client.ui.views</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RecordStatistics (com.progressoft.workshop.upload.client.ui.views)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RecordStatistics</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.progressoft.workshop.upload.client.ui.views;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gwt.core.client.GWT;
+<i>4</i>&nbsp;import com.google.gwt.i18n.client.NumberFormat;
+<i>5</i>&nbsp;import com.google.gwt.uibinder.client.UiBinder;
+<i>6</i>&nbsp;import com.google.gwt.uibinder.client.UiField;
+<i>7</i>&nbsp;import com.google.gwt.user.client.ui.Composite;
+<i>8</i>&nbsp;import gwt.material.design.client.ui.MaterialCard;
+<i>9</i>&nbsp;import gwt.material.design.client.ui.MaterialCardTitle;
+<i>10</i>&nbsp;import gwt.material.design.client.ui.MaterialLabel;
+<i>11</i>&nbsp;import gwt.material.design.client.ui.MaterialProgress;
+<i>12</i>&nbsp;import org.slf4j.Logger;
+<i>13</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class RecordStatistics extends Composite {
+<i>16</i>&nbsp;
+<b class="nc"><i>17</i>&nbsp;    private static final Logger logger = LoggerFactory.getLogger(RecordStatistics.class);</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    interface RecordStatisticsUiBinder extends UiBinder&lt;MaterialCard, RecordStatistics&gt; {
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;    private static RecordStatisticsUiBinder ourUiBinder = GWT.create(RecordStatisticsUiBinder.class);</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @UiField
+<i>26</i>&nbsp;    MaterialLabel totalTitle;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @UiField
+<i>29</i>&nbsp;    MaterialLabel firstProgressTitle;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @UiField
+<i>32</i>&nbsp;    MaterialLabel secondProgressTitle;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @UiField
+<i>35</i>&nbsp;    MaterialCardTitle totalValue;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @UiField
+<i>38</i>&nbsp;    MaterialCardTitle firstProgressValue;
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    @UiField
+<i>41</i>&nbsp;    MaterialProgress firstProgress;
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @UiField
+<i>44</i>&nbsp;    MaterialCardTitle secondProgressValue;
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @UiField
+<i>47</i>&nbsp;    MaterialProgress secondProgress;
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    private double numericTotalValue;
+<i>50</i>&nbsp;    private double numericFirstProgressValue;
+<i>51</i>&nbsp;    private double numericSecondProgressValue;
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    private ValueFormatter formatter;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    @FunctionalInterface
+<i>56</i>&nbsp;    public interface ValueFormatter{
+<i>57</i>&nbsp;        String format(double value);
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<b class="nc"><i>60</i>&nbsp;    public RecordStatistics(String totalTitle, String firstProgressTitle, String secondProgressTitle, ValueFormatter formatter) {</b>
+<b class="nc"><i>61</i>&nbsp;        initWidget(ourUiBinder.createAndBindUi(this));</b>
+<b class="nc"><i>62</i>&nbsp;        this.totalTitle.setText(totalTitle);</b>
+<b class="nc"><i>63</i>&nbsp;        this.firstProgressTitle.setText(firstProgressTitle);</b>
+<b class="nc"><i>64</i>&nbsp;        this.secondProgressTitle.setText(secondProgressTitle);</b>
+<b class="nc"><i>65</i>&nbsp;        this.formatter=formatter;</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    public void updateFirst(double increment) {
+<b class="nc"><i>69</i>&nbsp;        numericTotalValue += increment;</b>
+<b class="nc"><i>70</i>&nbsp;        numericFirstProgressValue += increment;</b>
+<b class="nc"><i>71</i>&nbsp;        firstProgress.setPercent((numericFirstProgressValue / numericTotalValue) * 100);</b>
+<b class="nc"><i>72</i>&nbsp;        totalValue.setText(formatter.format(numericTotalValue));</b>
+<b class="nc"><i>73</i>&nbsp;        firstProgressValue.setText(formatter.format(numericFirstProgressValue));</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    public void updateSecond(double increment) {
+<b class="nc"><i>77</i>&nbsp;        numericTotalValue += increment;</b>
+<b class="nc"><i>78</i>&nbsp;        numericSecondProgressValue += increment;</b>
+<b class="nc"><i>79</i>&nbsp;        secondProgress.setPercent((numericSecondProgressValue / numericTotalValue) * 100);</b>
+<b class="nc"><i>80</i>&nbsp;        totalValue.setText(formatter.format(numericTotalValue));</b>
+<b class="nc"><i>81</i>&nbsp;        secondProgressValue.setText(formatter.format(numericSecondProgressValue));</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-19 11:23</div>
+</div>
+</body>
+</html>
